@@ -1,0 +1,48 @@
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "editor.insertSpaces": false,
+  "files.exclude": {
+    "**/.git": true,
+    "false": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "out-tsc/**": true,
+    "dist": true
+  },
+  "typescript.validate.enable": true,
+  "typescript.format.enable": true,
+  "typescript.format.insertSpaceAfterCommaDelimiter": true,
+  "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "tslint.enable": true,
+  "tslint.run": "onType",
+  "tslint.configFile": "./tslint.json",
+  "editor.detectIndentation": false,
+  "editor.tabSize": 4,
+  "html.format.wrapAttributes": "force-aligned"
+}
