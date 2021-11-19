@@ -3,3 +3,36 @@ body{
 	margin: 0;
 	padding: 0;
 }
+
+  @font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 500;
+	src: url(assets//fonts/Montserrat-SemiBold.ttf) format('truetype');
+  }
+
+  @font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	src: url(assets/fonts/Montserrat-Regular.ttf) format('truetype');
+  }
+
+  @font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 600;
+	src: url(assets/fonts/Montserrat-Bold.ttf) format('truetype');
+  }
+
+  * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', 'sans-serif';
+  }
+
+
+.tc {
+	text-align: center;
+}

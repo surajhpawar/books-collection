@@ -1,11 +1,24 @@
-<h1>Gutenberg Project</h1>
-<p>
+<h1 class="tc">Gutenberg Project</h1>
+<p class="tc">
 	A social cataloging website that allows you to freely search its database of books, annotations,
 	and reviews.
 </p>
 
-<div *ngFor="let genre of genresList">
-	<div class="category-card">
-		{{genre}}
+<div class="category-container">
+	<div class="category-card"
+		 *ngFor="let genre of genresList"
+		 (click)="redirectToGenre(genre)">
+		<div class="image">
+			<img src="../../../assets/images/{{genre.title}}.svg"
+				 alt="{{genre.title}}"
+				 height="25px" />
+		</div>
+		<div class="title">
+			{{genre?.title}}
+		</div>
+		<div class="action">
+			<img src="../../../assets/images/Next.svg"
+				 alt='Next' />
+		</div>
 	</div>
 </div>

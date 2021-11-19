@@ -1,0 +1,21 @@
+.category-card, .category-container {
+	display: flex;
+	justify-content: center;
+}
+
+.category-container {
+	margin: 75px 0;
+}
+
+.category-card {
+	padding: 10px;
+	margin: 0 15px;
+	border: 1px solid grey;
+	.image {
+		padding: 0 6px;
+	}
+
+	.action {
+		padding: 0 6px;
+	}
+}
