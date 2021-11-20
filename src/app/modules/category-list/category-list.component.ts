@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs/internal/Subject';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
@@ -17,6 +19,8 @@ export class CategoryListComponent implements OnInit {
 	isLoading: boolean;
 	booksList: any[] = [];
 	noImage = '../../../assets/images/no_image.png';
+
+	private subject: Subject<string> = new Subject();
 
 	constructor(
 		private _router: Router,
@@ -46,6 +50,9 @@ export class CategoryListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadBooks();
+		(this.subject.pipe(debounceTime(300), distinctUntilChanged())).subscribe(searchTextValue => {
+			this.searchBooks();
+		});
 	}
 
 	loadBooks(): void {
@@ -84,7 +91,7 @@ export class CategoryListComponent implements OnInit {
 	}
 
 	searchChange(): void {
-		this.searchBooks();
+		this.subject.next(this.searchText);
 	}
 
 	clearSearch(): void {

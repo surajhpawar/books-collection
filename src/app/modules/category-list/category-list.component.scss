@@ -1,62 +1,66 @@
-.container{
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-}
-
 .back-button {
 	margin: 2em 0;
 }
 
+.head-container{
+	padding: 1px;
+	.wrapper {
+		width: 50%;
+		@media screen and (max-width: 480px) {
+			width: 90%;
+		}
+	}
+}
 
-.tab-content {
+.tab-head-content {
 	display: flex;
-	justify-content: center;
-	margin: 1em;
+	margin: 1em 0;
 	.sub-title {
 		font-size: 20px;
 		font-weight: 500;
-		padding: 5px 15px;
 	}
 }
 
 .nav-back {
-	padding: 5px 15px;
+	padding: 5px 15px 5px 5px;
 	cursor: pointer;
 }
 
-.list-container {
-	width: 95%;
-	gap: 20px;
+.list-card {
+	margin-top: 1.5em;
+	width: 90%;
+	gap: 1.5em;
+	display: flex;
+	flex-wrap: wrap;
+
+	@media screen and (max-width: 480px) {
+		width: 95%;
+		gap: 0.4em;
+	}
 }
 
-
 .input-group {
-	border: 1px solid rgb(80, 80, 80);
-	border-radius : 4px;
-	height: 40px;
+	display: flex;
 	margin-bottom: 2em;
 
 	.input-field {
-		padding: 10px;
+		height: 40px;
+		padding: 0 10px;
+		border-radius : 4px;
 	}
 	input {
 		border: none;
 		font-size: 16px;
+		margin: 0 5px;
 	}
 
 	input:focus{
 		outline: none;
 	}
-
-	mat-icon{
-		padding: 0 5px;
-	}
 }
 
-.input-group:focus-within, .input-group.ng-dirty {
-	border-color: #5E56E7;
+.input-field:focus-within, .input-field.ng-dirty {
+	border: 1px solid #5E56E7;
 }
 
 .book-card {

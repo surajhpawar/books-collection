@@ -1,38 +1,40 @@
-<div class="tab-content">
-	<img src="../../../assets/images/Back.svg"
-		 alt="Back"
-		 class="nav-back"
-		 (click)="redirectBack()" />
-	<div class="text-primary text-heading-2">{{genre | titlecase}}</div>
-</div>
+<div class="bg-white head-container tc">
+	<div class="wrapper">
+		<div class="tab-head-content">
+			<img src="../../../assets/images/Back.svg"
+				 alt="Back"
+				 class="nav-back"
+				 (click)="redirectBack()" />
+			<div class="text-primary text-heading-2">{{genre | titlecase}}</div>
+		</div>
 
-<div class="container tc">
-	<div class="input-group"
-		 [ngClass]="{'ng-dirty': searchText?.length}">
-		<div class="input-field">
-			<mat-icon [inline]="true"
-					  matPrefix>search</mat-icon>
-			<input matInput
-				   type="text"
-				   placeholder="Search"
-				   [(ngModel)]="searchText"
-				   (change)="searchChange()"
-				   class="">
-			<mat-icon *ngIf="searchText"
-					  matSuffix
-					  [inline]="true"
-					  (click)="clearSearch()">
-				close
-			</mat-icon>
+		<div class="input-group">
+			<div class="input-field d-inline-flex align-center bg-secondary w-100"
+				 [ngClass]="{'ng-dirty': searchText?.length}">
+				<img src="../../../assets/images/Search.svg"
+					 alt="search" />
+				<input matInput
+					   type="text"
+					   placeholder="Search"
+					   [(ngModel)]="searchText"
+					   (keyup)="searchChange()"
+					   class="bg-secondary w-100 text-base">
+				<img *ngIf="searchText"
+					 src="../../../assets/images/Cancel.svg"
+					 alt="clear"
+					 (click)="clearSearch()" />
+			</div>
 		</div>
 	</div>
+</div>
+<div class="search-data-panel">
 	<div *ngIf="isLoading else listRef"
-		 class="d-flex justify-center">
+		 class="d-flex justify-center w-100">
 		<mat-spinner></mat-spinner>
 	</div>
 	<ng-template #listRef>
-		<div class="list-container d-flex"
-			 *ngIf="!isLoading">
+		<div class="list-card"
+			 *ngIf="booksList.length else noDataRef">
 			<div class="list-item book-card bg-white tl"
 				 *ngFor="let book of booksList">
 				<div class="image">
@@ -47,6 +49,12 @@
 					{{book?.author}}
 				</div>
 			</div>
+		</div>
+	</ng-template>
+
+	<ng-template #noDataRef>
+		<div class="no-data-banner w-75 h-75">
+			No Data Found
 		</div>
 	</ng-template>
 </div>

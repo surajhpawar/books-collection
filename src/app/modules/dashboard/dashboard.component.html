@@ -1,26 +1,30 @@
-<h1 class="text-primary text-heading-1">Gutenberg Project</h1>
-<p class="tc text-medium">
-	A social cataloging website that allows you to freely search its database of books, annotations,
-	and reviews.
-</p>
-<div class="d-flex justify-center">
-	<div class="category-container sb-grid sb-grid-cols-2">
-		<div class="category-card pointer bg-white"
-			 *ngFor="let genre of genresList"
-			 (click)="redirectToGenre(genre)">
-			<div class="d-flex">
-				<div class="image">
-					<img src="../../../assets/images/{{genre.title}}.svg"
-						 alt="{{genre.title}}"
-						 height="25px" />
-				</div>
-				<div class="title d-flex align-center">
-					{{genre?.title}}
-				</div>
+<div class="main-container">
+	<div class="content-panel">
+		<div class="head-container tl">
+			<div class="text-primary text-heading-1">Gutenberg Project</div>
+			<div class="text-base info">
+				A social cataloging website that allows you to freely search its database of books, annotations,
+				and reviews.
 			</div>
-			<div class="action">
-				<img src="../../../assets/images/Next.svg"
-					 alt='Next' />
+		</div>
+		<div class="category-container">
+			<div class="category-card pointer bg-white"
+				 *ngFor="let genre of genresList"
+				 (click)="redirectToGenre(genre)">
+				<div class="d-flex">
+					<div class="image">
+						<img src="../../../assets/images/{{genre.title}}.svg"
+							 alt="{{genre.title}}"
+							 height="25px" />
+					</div>
+					<div class="title d-flex align-center text-base">
+						{{genre?.title | uppercase}}
+					</div>
+				</div>
+				<div class="action">
+					<img src="../../../assets/images/Next.svg"
+						 alt='Next' />
+				</div>
 			</div>
 		</div>
 	</div>

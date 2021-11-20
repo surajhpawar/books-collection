@@ -1,5 +1,35 @@
-.category-card, .category-container {
-	gap: 25px;
+.main-container{
+	width: 100vw;
+	height: 100vh;
+	background-image: url('../../../assets/images/Pattern.svg');
+	background-repeat: repeat;
+}
+
+.head-container{
+	padding: 4em 1em 2em 1em;
+	.info {
+		font-weight: 500;
+		padding: 1em 0 1.5em 0;
+	}
+}
+.category-container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	column-gap: 5em;
+	row-gap: 2em;
+
+	@media screen and (max-width: 480px) {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+		row-gap: 1em;
+	}
+}
+
+.content-panel {
+	width: 60%;
+	@media screen and (max-width: 480px) {
+		width: 90%;
+	}
 }
 
 .category-container {
@@ -23,3 +53,6 @@
 		padding: 0 6px;
 	}
 }
+
+
+
