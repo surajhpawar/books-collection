@@ -4,35 +4,36 @@ body{
 	padding: 0;
 }
 
+@import url(assets/styles/util.scss);
+
   @font-face {
-	font-family: Montserrat;
+	font-family: 'Montserrat';
 	font-style: normal;
 	font-weight: 500;
 	src: url(assets//fonts/Montserrat-SemiBold.ttf) format('truetype');
   }
 
   @font-face {
-	font-family: Montserrat;
+	font-family: 'Montserrat';
 	font-style: normal;
 	font-weight: 400;
 	src: url(assets/fonts/Montserrat-Regular.ttf) format('truetype');
   }
 
   @font-face {
-	font-family: Montserrat;
+	font-family: 'Montserrat';
 	font-style: normal;
 	font-weight: 600;
 	src: url(assets/fonts/Montserrat-Bold.ttf) format('truetype');
   }
 
   * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-family: 'Montserrat', 'sans-serif';
+	font-family: 'Montserrat', 'arial';
   }
 
-
-.tc {
-	text-align: center;
+html, body {
+	height: 100%;
+	background-color: #F8F7FF;
+	display: flex;
+    justify-content: center;
 }

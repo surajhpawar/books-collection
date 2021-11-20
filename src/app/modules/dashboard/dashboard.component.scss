@@ -1,16 +1,20 @@
 .category-card, .category-container {
-	display: flex;
-	justify-content: center;
+	gap: 25px;
 }
 
 .category-container {
-	margin: 75px 0;
+	width: 100%;
 }
 
 .category-card {
-	padding: 10px;
-	margin: 0 15px;
-	border: 1px solid grey;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	box-shadow: 0 2px 5px 0 rgba(211, 209, 238, 0.5);
+	border-radius: 4px;
+	height: 50px;
+
 	.image {
 		padding: 0 6px;
 	}
