@@ -139,7 +139,10 @@ export class CategoryListComponent implements OnInit {
 	}
 
 	onBookView(book: Book): void {
-		const url = this.getMimeType(book.formats);
+		let url = this.getMimeType(book.formats);
+		if (url && url.endsWith('.zip')) {
+			url = this.zipUrlToHtml(url);
+		}
 		if (!url) {
 			this._snackBar.openFromComponent(NotificationComponent, {
 				data: '<span class="text-color-default">No viewable version available. <br /> Try Again </span>',
@@ -150,8 +153,8 @@ export class CategoryListComponent implements OnInit {
 		}
 	}
 
-	getMimeType(formats) {
-		for (let format in formats) {
+	getMimeType(formats): string {
+		for (const format in formats) {
 			if (formats[format]) {
 				const html = format.match(/text\/html/i);
 				if (html) {
@@ -168,6 +171,13 @@ export class CategoryListComponent implements OnInit {
 			}
 		}
 		return null;
+	}
+
+	zipUrlToHtml(zipUrl: string): string {
+		const splitZipUrl = zipUrl.split('.zip');
+		const splitByPath = splitZipUrl[0].split('/');
+		const lastPathId = splitByPath[splitByPath.length - 1];
+		return splitZipUrl[0] + '/' + lastPathId + '.htm';
 	}
 
 	redirectBack(): void {
