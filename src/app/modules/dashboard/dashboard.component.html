@@ -1,24 +1,23 @@
 <div class="main-container">
 	<div class="content-panel">
 		<div class="head-container tl">
-			<div class="text-primary text-heading-1">Gutenberg Project</div>
+			<div class="text-primary text-heading-1">{{title | uppercase}}</div>
 			<div class="text-base info">
-				A social cataloging website that allows you to freely search its database of books, annotations,
-				and reviews.
+				{{infoMessage}}
 			</div>
 		</div>
 		<div class="category-container">
 			<div class="category-card pointer bg-white"
-				 *ngFor="let genre of genresList"
-				 (click)="redirectToGenre(genre)">
+				 *ngFor="let topic of topicsList"
+				 (click)="redirectToTopic(topic)">
 				<div class="d-flex">
 					<div class="image">
-						<img src="../../../assets/images/{{genre.title}}.svg"
-							 alt="{{genre.title}}"
+						<img src="../../../assets/images/{{topic.title}}.svg"
+							 alt="{{topic.title}}"
 							 height="25px" />
 					</div>
 					<div class="title d-flex align-center text-base">
-						{{genre?.title | uppercase}}
+						{{topic?.title | uppercase}}
 					</div>
 				</div>
 				<div class="action">

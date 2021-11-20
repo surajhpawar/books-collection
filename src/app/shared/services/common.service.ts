@@ -12,16 +12,18 @@ export class CommonService {
 	constructor(private _httpClient: HttpClient) {
 	}
 
-	getBooksList(genre: string, pageSetting: any): Observable<any> {
+	getBooksList(topic: string, pageSetting: any): Observable<any> {
 		const httpParams = new HttpParams()
-			.append('topic', genre)
+			.append('topic', topic)
+			.append('mime_type', 'image/')
 			.append('page', pageSetting.page);
 		return this._httpClient.get<any>(this.GET_BOOKS_LIST, { params: httpParams });
 	}
 
-	getBooksListBySearch(genre: string, searchText: string, pageSetting: any): Observable<any> {
+	getBooksListBySearch(topic: string, searchText: string, pageSetting: any): Observable<any> {
 		const httpParams = new HttpParams()
-			.append('topic', genre)
+			.append('topic', topic)
+			.append('mime_type', 'image/')
 			.append('page', pageSetting.page)
 			.append('search', searchText);
 		return this._httpClient.get<any>(this.GET_BOOKS_LIST, { params: httpParams });

@@ -8,9 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificationComponent } from 'src/app/shared/components/notification-component/notification.component';
 
 @NgModule({
-	declarations: [CategoryListComponent],
+	declarations: [CategoryListComponent, NotificationComponent],
+	entryComponents: [NotificationComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -19,8 +22,10 @@ import { FormsModule } from '@angular/forms';
 		MatIconModule,
 		MatButtonModule,
 		MatProgressSpinnerModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		MatSnackBarModule
 	]
 })
+
 export class CategoryListModule {
 }

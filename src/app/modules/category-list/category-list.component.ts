@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationComponent } from 'src/app/shared/components/notification-component/notification.component';
 
 @Component({
 	selector: 'app-category-list',
@@ -13,10 +15,10 @@ import { CommonService } from 'src/app/shared/services/common.service';
 export class CategoryListComponent implements OnInit {
 
 	searchText: string;
-	genre: string;
+	topic: string;
+	isLoading: boolean;
 
 	pageSetting = { page: 1, previousPage: null, nextPage: null };
-	isLoading: boolean;
 	booksList: any[] = [];
 	noImage = '../../../assets/images/no_image.png';
 
@@ -26,16 +28,17 @@ export class CategoryListComponent implements OnInit {
 		private _router: Router,
 		private _activatedRoute: ActivatedRoute,
 		private _commonService: CommonService,
-		private _cdr: ChangeDetectorRef
+		private _cdr: ChangeDetectorRef,
+		private _snackBar: MatSnackBar
 	) {
 		this._activatedRoute.queryParamMap.subscribe(params => {
-			this.genre = params.get('genre');
+			this.topic = params.get('topic');
 		});
 	}
 
 	getImage(formats) {
 		let image = '';
-		for (let key in formats) {
+		for (const key in formats) {
 			if (key.match(/image\/*/i)) {
 				image = formats[key];
 			}
@@ -60,7 +63,7 @@ export class CategoryListComponent implements OnInit {
 			this.searchBooks();
 		} else {
 			this.isLoading = true;
-			this._commonService.getBooksList(this.genre, this.pageSetting).subscribe((books: any) => {
+			this._commonService.getBooksList(this.topic, this.pageSetting).subscribe((books: any) => {
 				books.results.forEach(book => {
 					book.image = this.getImage(book.formats);
 					book.author = book.authors[0]?.name.split(', ')?.reverse().join(' ') || 'NA';
@@ -76,7 +79,7 @@ export class CategoryListComponent implements OnInit {
 
 	searchBooks(): void {
 		this.isLoading = true;
-		this._commonService.getBooksListBySearch(this.genre, this.searchText, this.pageSetting)
+		this._commonService.getBooksListBySearch(this.topic, this.searchText, this.pageSetting)
 			.subscribe((books: any) => {
 				books.results.forEach(book => {
 					book.image = this.getImage(book.formats);
@@ -97,6 +100,38 @@ export class CategoryListComponent implements OnInit {
 	clearSearch(): void {
 		this.searchText = '';
 		this.loadBooks();
+	}
+
+	onBookView(book: any): void {
+		const url = this.getMimeType(book.formats);
+		if (!url) {
+			this._snackBar.openFromComponent(NotificationComponent, {
+				data: '<span class="text-color-default">No viewable version available. <br /> Try Again </span>',
+				duration: 40000
+			});
+		} else {
+			window.open(url, '_blank');
+		}
+	}
+
+	getMimeType(formats) {
+		for (let format in formats) {
+			if (formats[format]) {
+				const html = format.match(/text\/html/i);
+				if (html) {
+					return formats[format];
+				}
+				const txt = format.match(/^.+\.txt$/i);
+				if (txt) {
+					return formats[format];
+				}
+				const pdf = format.match(/^.+\.pdf$/i);
+				if (pdf) {
+					return formats[format];
+				}
+			}
+		}
+		return null;
 	}
 
 	redirectBack(): void {
