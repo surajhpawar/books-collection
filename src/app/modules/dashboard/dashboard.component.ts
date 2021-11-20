@@ -16,11 +16,9 @@ export class DashboardComponent implements OnInit {
 
 	constructor(
 		private _router: Router
-	) {
-	}
+	) { }
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void { }
 
 	redirectToTopic(topic: any): void {
 		this._router.navigate(['/books/category'], {

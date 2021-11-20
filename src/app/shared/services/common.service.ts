@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BookListApiResponse } from '../models/book-list.model';
+import { Page } from '../models/page.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,20 +14,28 @@ export class CommonService {
 	constructor(private _httpClient: HttpClient) {
 	}
 
-	getBooksList(topic: string, pageSetting: any): Observable<any> {
+	getBooksList(topic: string, pageSetting: Page): Observable<BookListApiResponse> {
 		const httpParams = new HttpParams()
 			.append('topic', topic)
 			.append('mime_type', 'image/')
-			.append('page', pageSetting.page);
-		return this._httpClient.get<any>(this.GET_BOOKS_LIST, { params: httpParams });
+			.append('page', String(pageSetting.pageIndex));
+		return this._httpClient.get<BookListApiResponse>(this.GET_BOOKS_LIST, { params: httpParams });
 	}
 
-	getBooksListBySearch(topic: string, searchText: string, pageSetting: any): Observable<any> {
+	getBooksListBySearch(topic: string, searchText: string, pageSetting: Page): Observable<BookListApiResponse> {
 		const httpParams = new HttpParams()
 			.append('topic', topic)
 			.append('mime_type', 'image/')
-			.append('page', pageSetting.page)
+			.append('page', String(pageSetting.pageIndex))
 			.append('search', searchText);
-		return this._httpClient.get<any>(this.GET_BOOKS_LIST, { params: httpParams });
+		return this._httpClient.get<BookListApiResponse>(this.GET_BOOKS_LIST, { params: httpParams });
+	}
+
+	getNextBooksList(nextPageListUrl: string): Observable<BookListApiResponse> {
+		return this._httpClient.get<BookListApiResponse>(nextPageListUrl);
+	}
+
+	getPreviousBooksList(previousPageListUrl: string): Observable<BookListApiResponse> {
+		return this._httpClient.get<BookListApiResponse>(previousPageListUrl);
 	}
 }

@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NotificationComponent } from 'src/app/shared/components/notification-component/notification.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NotificationComponent } from 'src/app/shared/components/notification-co
 		MatButtonModule,
 		MatProgressSpinnerModule,
 		MatFormFieldModule,
+		MatProgressBarModule,
 		MatSnackBarModule
 	]
 })

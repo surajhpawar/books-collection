@@ -27,9 +27,11 @@
 		</div>
 	</div>
 </div>
-<div class="search-data-panel">
+<div class="search-data-panel"
+	 (scroll)="onScroll($event)">
 	<div *ngIf="isLoading else listRef"
 		 class="d-flex justify-center align-center w-100 spinner-panel">
+		<div class="w-100">Loading...</div>
 		<mat-spinner></mat-spinner>
 	</div>
 	<ng-template #listRef>
@@ -51,11 +53,17 @@
 				</div>
 			</div>
 		</div>
+		<div class="load-next-info w-50"
+			 *ngIf="nextLoading">
+			Loading Next...
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+		</div>
 	</ng-template>
 
 	<ng-template #noDataRef>
-		<div class="no-data-banner w-75 h-75">
-			No Data Found
+		<div class="no-data-banner w-100 d-flex justify-center align-center text-base">
+			No Data Found. <br />
+			Search Again with different input.
 		</div>
 	</ng-template>
 </div>
